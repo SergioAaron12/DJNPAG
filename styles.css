@@ -43,6 +43,15 @@ img {
   max-width: 520px;
 }
 
+.admin-login {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.admin-login .form {
+  text-align: left;
+}
+
 .brand {
   display: flex;
   align-items: center;
@@ -385,6 +394,11 @@ th {
   padding: 32px 0 48px;
   color: var(--muted);
   text-align: center;
+}
+
+.footer__admin {
+  margin-top: 16px;
+  display: inline-flex;
 }
 
 @media (max-width: 720px) {

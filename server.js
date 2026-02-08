@@ -4,6 +4,7 @@ const express = require("express");
 const path = require("path");
 const nodemailer = require("nodemailer");
 const { WebpayPlus, Options, Environment } = require("transbank-sdk");
+const fs = require("fs/promises");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -23,6 +24,26 @@ const transporter = nodemailer.createTransport({
 });
 
 const destinatario = process.env.DEST_EMAIL;
+const adminToken = process.env.ADMIN_TOKEN;
+const dataDir = path.join(__dirname, "data");
+const comprasFile = path.join(dataDir, "compras.json");
+
+const asegurarArchivoCompras = async () => {
+  await fs.mkdir(dataDir, { recursive: true });
+  try {
+    await fs.access(comprasFile);
+  } catch {
+    await fs.writeFile(comprasFile, "[]", "utf8");
+  }
+};
+
+const guardarCompraEnArchivo = async (compra) => {
+  await asegurarArchivoCompras();
+  const contenido = await fs.readFile(comprasFile, "utf8");
+  const compras = JSON.parse(contenido || "[]");
+  compras.unshift(compra);
+  await fs.writeFile(comprasFile, JSON.stringify(compras, null, 2), "utf8");
+};
 
 const WEBPAY_ENV = process.env.WEBPAY_ENV || "integration";
 const WEBPAY_COMMERCE_CODE =
@@ -44,6 +65,8 @@ app.post("/api/compra", async (req, res) => {
         .status(500)
         .json({ ok: false, message: "DEST_EMAIL no configurado" });
     }
+
+    await guardarCompraEnArchivo(compra);
 
     const html = `
       <h2>Nueva compra DJN</h2>
@@ -71,6 +94,21 @@ app.post("/api/compra", async (req, res) => {
     res.json({ ok: true });
   } catch (error) {
     res.status(500).json({ ok: false, message: "Error enviando correo" });
+  }
+});
+
+app.get("/api/admin/compras", async (req, res) => {
+  try {
+    if (!adminToken || req.headers["x-admin-token"] !== adminToken) {
+      return res.status(401).json({ ok: false, message: "No autorizado" });
+    }
+
+    await asegurarArchivoCompras();
+    const contenido = await fs.readFile(comprasFile, "utf8");
+    const compras = JSON.parse(contenido || "[]");
+    res.json({ ok: true, compras });
+  } catch (error) {
+    res.status(500).json({ ok: false, message: "Error leyendo compras" });
   }
 });
 
@@ -111,6 +149,23 @@ app.post("/webpay/retorno", async (req, res) => {
     const status = result.status || "DESCONOCIDO";
     const amount = result.amount || 0;
     const order = result.buy_order || "-";
+
+    if (destinatario && status === "AUTHORIZED") {
+      const html = `
+        <h2>Pago confirmado - DJN</h2>
+        <p><strong>Estado:</strong> ${status}</p>
+        <p><strong>Orden:</strong> ${order}</p>
+        <p><strong>Monto:</strong> $${amount}</p>
+        <p><strong>Fecha:</strong> ${new Date().toLocaleString("es-ES")}</p>
+      `;
+
+      await transporter.sendMail({
+        from: `DJN <${process.env.SMTP_FROM || process.env.SMTP_USER}>`,
+        to: destinatario,
+        subject: "Pago confirmado - DJN",
+        html,
+      });
+    }
 
     res.send(`
       <html lang="es">
