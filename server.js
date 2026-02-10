@@ -57,6 +57,13 @@ const webpayOptions = new Options(
 );
 const webpayTx = new WebpayPlus.Transaction(webpayOptions);
 
+const formatCLP = (value) =>
+  new Intl.NumberFormat("es-CL", {
+    style: "currency",
+    currency: "CLP",
+    maximumFractionDigits: 0,
+  }).format(Number(value || 0));
+
 app.post("/api/compra", async (req, res) => {
   try {
     const compra = req.body;
@@ -79,8 +86,8 @@ app.post("/api/compra", async (req, res) => {
       <p><strong>Dirección:</strong> ${compra.direccion}</p>
       <p><strong>Producto:</strong> ${compra.producto}</p>
       <p><strong>Cantidad:</strong> ${compra.cantidad}</p>
-      <p><strong>Precio unitario:</strong> $${compra.precioUnitario}</p>
-      <p><strong>Total:</strong> $${compra.total}</p>
+        <p><strong>Precio de la jaula:</strong> ${formatCLP(compra.precioUnitario)}</p>
+        <p><strong>Total:</strong> ${formatCLP(compra.total)}</p>
       <p><strong>Método de pago:</strong> ${compra.metodo}</p>
     `;
 
