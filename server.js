@@ -23,7 +23,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const destinatario = process.env.DEST_EMAIL;
+const destinatario = process.env.DEST_EMAIL || "grupo.movirec2023@gmail.com";
 const adminToken = process.env.ADMIN_TOKEN;
 const dataDir = path.join(__dirname, "data");
 const comprasFile = path.join(dataDir, "compras.json");
@@ -94,6 +94,48 @@ app.post("/api/compra", async (req, res) => {
     res.json({ ok: true });
   } catch (error) {
     res.status(500).json({ ok: false, message: "Error enviando correo" });
+  }
+});
+
+app.post("/api/contacto", async (req, res) => {
+  try {
+    const { nombre, correo, telefono, mensaje } = req.body || {};
+    if (!destinatario) {
+      return res
+        .status(500)
+        .json({ ok: false, message: "DEST_EMAIL no configurado" });
+    }
+
+    if (!nombre || !correo || !telefono || !mensaje) {
+      return res.status(400).json({ ok: false, message: "Datos inválidos" });
+    }
+
+    if (mensaje.length < 10 || mensaje.length > 500) {
+      return res
+        .status(400)
+        .json({ ok: false, message: "Mensaje fuera de rango" });
+    }
+
+    const html = `
+      <h2>Nuevo mensaje de contacto</h2>
+      <p><strong>Nombre:</strong> ${nombre}</p>
+      <p><strong>Correo:</strong> ${correo}</p>
+      <p><strong>Teléfono:</strong> ${telefono}</p>
+      <p><strong>Mensaje:</strong></p>
+      <p>${mensaje}</p>
+      <p><strong>Fecha:</strong> ${new Date().toLocaleString("es-ES")}</p>
+    `;
+
+    await transporter.sendMail({
+      from: `DJN <${process.env.SMTP_FROM || process.env.SMTP_USER}>`,
+      to: destinatario,
+      subject: "Contacto - DJN",
+      html,
+    });
+
+    res.json({ ok: true });
+  } catch (error) {
+    res.status(500).json({ ok: false, message: "Error enviando mensaje" });
   }
 });
 

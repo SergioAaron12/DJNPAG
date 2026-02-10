@@ -3,8 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DJN - Jaula de gallina ponedora</title>
-    <link rel="stylesheet" href="styles.css" />
+    <title>DJN - Modelo Pro 120</title>
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/home.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -12,54 +13,69 @@
       rel="stylesheet"
     />
   </head>
-  <body>
+  <body class="page-light">
     <header class="hero">
       <div class="topbar">
         <div class="topbar__inner container">
           <div class="brand">
-            <img src="assets/logo.png" alt="Logo DJN" class="brand__logo" />
+            <a href="index.html" aria-label="Ir al inicio">
+              <img src="assets/logo.png" alt="Logo DJN" class="brand__logo" />
+            </a>
           </div>
           <div class="topbar__contact">
             <div class="contact-item">
               <span class="icon" aria-hidden="true">
-                <svg viewBox="0 0 48 48" aria-hidden="true">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
                   <path
-                    fill="#EA4335"
-                    d="M24 24.5L4 10v28c0 2.2 1.8 4 4 4h8V20.6l8 3.9 8-3.9V42h8c2.2 0 4-1.8 4-4V10L24 24.5z"
-                  />
-                  <path
-                    fill="#FBBC05"
-                    d="M44 10L24 24.5 4 10l16-6c2.5-1 5.5-1 8 0l16 6z"
-                  />
-                  <path
-                    fill="#34A853"
-                    d="M12 42V20.6l-8-4.6v22c0 2.2 1.8 4 4 4h4z"
-                  />
-                  <path
-                    fill="#4285F4"
-                    d="M36 42h4c2.2 0 4-1.8 4-4V16l-8 4.6V42z"
+                    fill="#ffffff"
+                    d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
                   />
                 </svg>
               </span>
-              <a href="mailto:elsakitodewea@gmail.com">Contacto</a>
+              <a href="mailto:grupo.movirec2023@gmail.com">Correo</a>
             </div>
             <div class="contact-item">
               <span class="icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
                   <path
-                    fill="#111827"
+                    fill="#ffffff"
                     d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.1.36 2.3.55 3.58.55a1 1 0 011 1V20a1 1 0 01-1 1C11.85 21 3 12.15 3 1a1 1 0 011-1h3.5a1 1 0 011 1c0 1.28.19 2.48.55 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"
                   />
                 </svg>
               </span>
               <a href="https://wa.me/56942730329" target="_blank" rel="noreferrer">
-                +56 9 4273 0329
+                9 4273 0329
               </a>
             </div>
             <a class="btn btn--dark btn--contacto" href="contacto.html">Contacto</a>
           </div>
         </div>
       </div>
+
+      <section class="slider slider--full" aria-label="Galeria de Modelo Pro 120">
+        <div class="slider__track">
+          <img
+            class="slider__slide is-active"
+            src="assets/slider1.png"
+            alt="Modelo Pro 120 - Banner principal"
+          />
+          <img
+            class="slider__slide"
+            src="assets/slider2.png"
+            alt="Modelo Pro 120 - Vista alternativa"
+          />
+          <div class="slider__overlay">
+            <div class="container slider__cta-inner">
+              <h2 class="slider__title">
+                Sistema Avicola Integral DJN<br />Modelo Pro A 120
+              </h2>
+              <p class="slider__subtitle">
+                Produccion eficiente, higiene total y control continuo para tu granja.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <div class="container">
         <nav class="nav">
@@ -71,19 +87,19 @@
         </nav>
         <div class="hero__grid">
           <div class="hero__content">
-            <p class="eyebrow">Equipo profesional para producción avícola</p>
-            <h1>Jaula de gallina ponedora DJN</h1>
+            <p class="eyebrow">Equipo profesional para produccion avicola</p>
+            <h1>Sistema Avicola Integral DJN Modelo Pro A 120 </h1>
             <p>
               Diseño industrial, máxima higiene y ventilación continua.
               Gestiona compras y exporta reportes en Excel con un clic.
             </p>
             <div class="hero__price">
-              <span class="price">$125.00</span>
-              <span class="price__note">Garantía de 6 meses y soporte técnico</span>
+              <span class="price">$380.000 + iva</span>
+              <span class="price__note">Modelo Pro A 120 </span>
             </div>
             <div class="hero__actions">
               <button class="btn btn--primary" id="btnComprar">Comprar ahora</button>
-              <button class="btn btn--dark" id="btnPagarWebpay">
+              <button class="btn btn--dark btn--disabled" id="btnPagarWebpay" disabled>
                 Pagar con Webpay
               </button>
             </div>
@@ -91,13 +107,13 @@
           <div class="hero__card">
             <img
               src="assets/producto.png"
-              alt="Jaula de gallina ponedora DJN"
+              alt="Sistema Avicola Integral DJN - Modelo Pro 120"
             />
             <ul class="hero__features">
-              <li>Estructura galvanizada anticorrosión</li>
-              <li>Capacidad para 6 gallinas ponedoras</li>
-              <li>Bandeja recolectora desmontable</li>
-              <li>Incluye bebedero y comedero</li>
+              <li>Módulos totalmente equipados</li>
+              <li>Capacidad para 120 gallinas ponedoras</li>
+              <li></li>
+              <li></li>
             </ul>
           </div>
         </div>
@@ -124,10 +140,6 @@
               <h3>Material premium</h3>
               <p>Acero galvanizado resistente a la humedad y corrosión.</p>
             </div>
-            <div class="card">
-              <h3>Fácil mantenimiento</h3>
-              <p>Bandejas extraíbles y limpieza sin herramientas.</p>
-            </div>
           </div>
         </div>
       </section>
@@ -137,28 +149,45 @@
         <div class="specs">
           <div>
             <ul>
-              <li>Capacidad: 6 gallinas ponedoras</li>
-              <li>Dimensiones: 120 cm x 60 cm x 80 cm</li>
+              <li>Capacidad: 120 gallinas ponedoras</li>
+              <li>Dimensiones: Modulo 230 cm x 215 cm x 150 cm</li>
               <li>Material: Acero galvanizado</li>
-              <li>Incluye: Bebedero + comedero</li>
+              <li>
+                Incluye:
+                <button class="specs__link" id="bebederoTrigger" type="button">
+                  Bebedero de Chupete
+                </button>
+                ,
+                <button class="specs__link" id="comederoTrigger" type="button">
+                  Comederos Platicos de alta durabilidad
+                </button>
+                ,
+                <button class="specs__link" id="jaulasTrigger" type="button">
+                  Jaulas
+                </button>
+                , Atriles galvanizados
+                ,
+                <button class="specs__link" id="estanqueTrigger" type="button">
+                  Estanque para agua
+                </button>
+              </li>
             </ul>
           </div>
           <div>
             <ul>
-              <li>Ventilación: 360°</li>
-              <li>Garantía: 6 meses</li>
-              <li>Peso: 18 kg</li>
-              <li>Color: Negro industrial</li>
+              <li>Condicion del producto:	Nuevo</li>
+              <li>Color: Plateado </li>
+              <li>Vida util: 15 años</li>
             </ul>
           </div>
         </div>
       </section>
 
       <section class="section" id="comprar">
-        <h2>Comprar</h2>
+        <h2>Comprar Modelo Pro 120</h2>
         <p>
-          Completa los datos y guarda la compra. Se almacenará en tu navegador y
-          podrás exportar a Excel cuando quieras.
+          Completa los datos y guarda la compra del Modelo Pro 120. Te
+          contactaremos para coordinar la entrega.
         </p>
 
         <form id="formCompra" class="form">
@@ -186,8 +215,6 @@
             <label for="metodo">Método de pago</label>
             <select id="metodo" name="metodo" required>
               <option value="Transferencia">Transferencia</option>
-              <option value="Efectivo">Efectivo</option>
-              <option value="Tarjeta">Tarjeta</option>
             </select>
           </div>
           <button class="btn btn--primary" type="submit">Guardar compra</button>
@@ -197,10 +224,133 @@
 
     </main>
 
-    <footer class="footer">
-      <div class="container">
-        <p>DJN · Ventas de jaulas para gallinas ponedoras</p>
-        <a class="btn btn--ghost footer__admin" href="admin.html">Admin</a>
+    <div class="modal-overlay" id="bebederoModal" hidden>
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="bebederoTitle">
+        <button class="modal__close" type="button" aria-label="Cerrar">x</button>
+        <h3 id="bebederoTitle">Bebedero de Chupete</h3>
+        <div class="modal__section">
+          <img
+            src="assets/bebedero.png"
+            alt="Boquillas del bebedero"
+            class="modal__img modal__img--small"
+          />
+          <p>
+            El bebedero de chupete es un sistema de hidratación eficiente para
+            gallinas ponedoras. Con boquillas de acero inoxidable, proporciona
+            agua fresca y limpia, reduciendo el desperdicio y manteniendo la
+            higiene en la granja.
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-overlay" id="comederoModal" hidden>
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="comederoTitle">
+        <button class="modal__close" type="button" aria-label="Cerrar">x</button>
+        <h3 id="comederoTitle">Comederos Platicos</h3>
+        <div class="modal__section">
+          <img
+            src="assets/comedero.png"
+            alt="Comedero plastico de alta durabilidad"
+            class="modal__img modal__img--equal"
+          />
+          <img
+            src="assets/comedero1.jpeg"
+            alt="Comedero plastico en detalle"
+            class="modal__img modal__img--equal"
+          />
+          <p>
+            Comederos platicos de alta durabilidad, faciles de limpiar y
+            resistentes al uso diario en ambientes avicolas.
+          </p>
+          <video
+            class="modal__img modal__img--compact"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+          >
+            <source src="assets/comederodjn.mp4" type="video/mp4" />
+            Tu navegador no soporta video HTML5.
+          </video>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-overlay" id="jaulasModal" hidden>
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="jaulasTitle">
+        <button class="modal__close" type="button" aria-label="Cerrar">x</button>
+        <h3 id="jaulasTitle">Jaulas </h3>
+        <div class="modal__section">
+          <img
+            src="assets/jaula_djn.png"
+            alt="Jaulas y atriles galvanizados"
+            class="modal__img modal__img--small"
+          />
+          <p>
+            Estructura galvanizada resistente a la humedad y a la corrosion,
+            pensada para un uso prolongado en ambiente avicola.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-overlay" id="estanqueModal" hidden>
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="estanqueTitle">
+        <button class="modal__close" type="button" aria-label="Cerrar">x</button>
+        <h3 id="estanqueTitle">Estanque para agua</h3>
+        <div class="modal__section">
+          <p>
+            fabricados en polietileno de alta densidad.
+            material resistente a la corrosion de los quimicos
+          </p>
+          <video
+            class="modal__img"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+          >
+            <source src="assets/estanque_video.mp4" type="video/mp4" />
+            Tu navegador no soporta video HTML5.
+          </video>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer footer--pro">
+      <div class="container footer__grid">
+        <div class="footer__brand">
+          <p class="footer__title">
+            <img src="assets/logo.png" alt="Logo DJN" class="footer__logo" />
+            DJN
+          </p>
+          <p class="footer__desc">
+            Venta de jaulas para gallinas ponedoras con asesoría y soporte
+            técnico.
+          </p>
+        </div>
+        <div class="footer__col">
+          <h4>Contacto</h4>
+          <p>grupo.movirec2023@gmail.com</p>
+          <p>9 4273 0329</p>
+        </div>
+        <div class="footer__col">
+          <h4>Dirección</h4>
+          <p>Camino Lo Castro 14, 9390000 Lampa, Región Metropolitana de Santiago</p>
+        </div>
+        <div class="footer__col">
+          <h4>Acceso</h4>
+          <a href="index.html">Inicio</a>
+          <a href="contacto.html">Contacto</a>
+          <a href="admin.html">Admin</a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <div class="container">
+          <p>© 2026 DJN. Todos los derechos reservados.</p>
+        </div>
       </div>
     </footer>
 

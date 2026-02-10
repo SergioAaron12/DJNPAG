@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Administrador - DJN</title>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/admin.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -12,12 +13,14 @@
       rel="stylesheet"
     />
   </head>
-  <body class="page-contacto">
+  <body class="page-light">
     <header class="hero">
       <div class="topbar">
         <div class="topbar__inner container">
           <div class="brand">
-            <img src="assets/logo.png" alt="Logo DJN" class="brand__logo" />
+            <a href="index.html" aria-label="Ir al inicio">
+              <img src="assets/logo.png" alt="Logo DJN" class="brand__logo" />
+            </a>
           </div>
           <div class="topbar__contact">
             <a class="btn btn--dark" href="index.html">Volver</a>
@@ -70,6 +73,41 @@
         </div>
       </section>
     </main>
+
+    <footer class="footer footer--pro">
+      <div class="container footer__grid">
+        <div class="footer__brand">
+          <p class="footer__title">
+            <img src="assets/logo.png" alt="Logo DJN" class="footer__logo" />
+            DJN
+          </p>
+          <p class="footer__desc">
+            Venta de jaulas para gallinas ponedoras con asesoría y soporte
+            técnico.
+          </p>
+        </div>
+        <div class="footer__col">
+          <h4>Contacto</h4>
+          <p>grupo.movirec2023@gmail.com</p>
+          <p>9 4273 0329</p>
+        </div>
+        <div class="footer__col">
+          <h4>Dirección</h4>
+          <p>RM Metropolitana, Santiago, Chile</p>
+        </div>
+        <div class="footer__col">
+          <h4>Acceso</h4>
+          <a href="index.html">Inicio</a>
+          <a href="contacto.html">Contacto</a>
+          <a href="admin.html">Admin</a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <div class="container">
+          <p>© 2026 DJN. Todos los derechos reservados.</p>
+        </div>
+      </div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.19.3/dist/xlsx.full.min.js"></script>
     <script src="admin.js"></script>

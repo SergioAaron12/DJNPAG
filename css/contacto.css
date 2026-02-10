@@ -1,0 +1,151 @@
+.page-contacto--public {
+  background-color: #f5f7fb;
+  background-image: url("../assets/body.djn.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: #1b1b1b;
+}
+
+.page-contacto--public .hero {
+  background: transparent;
+  padding-bottom: 24px;
+}
+
+.page-contacto--public .topbar__contact {
+  color: var(--text);
+}
+
+.page-contacto--public .contact-item a {
+  color: var(--text);
+}
+
+.page-contacto--public .contact-item a:hover {
+  color: #ffffff;
+}
+
+.page-contacto--public .eyebrow {
+  color: #6b7280;
+}
+
+.page-contacto .btn--contacto {
+  display: none;
+}
+
+.contacto-hero {
+  padding: 24px 0 8px;
+}
+
+.contacto-main {
+  padding-bottom: 72px;
+}
+
+.contacto-grid {
+  display: grid;
+  grid-template-columns: minmax(240px, 320px) 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+.contacto-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+}
+
+.contacto-list {
+  list-style: none;
+  display: grid;
+  gap: 20px;
+  margin-top: 18px;
+}
+
+.contacto-list li {
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  gap: 14px;
+}
+
+.contacto-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #f3f4f6;
+  color: #0f172a;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+.contacto-list h3 {
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+}
+
+.contacto-list p {
+  color: #4b5563;
+}
+
+.contacto-alert {
+  background: #e7f6ec;
+  border: 1px solid #c7ead3;
+  color: #1f6f3a;
+  padding: 16px;
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+
+.contacto-alert h3 {
+  margin-bottom: 6px;
+  font-size: 1rem;
+}
+
+.contacto-intro {
+  color: #4b5563;
+  margin-bottom: 18px;
+}
+
+.contacto-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.contacto-form-grid .field--full {
+  grid-column: 1 / -1;
+}
+
+.contacto-form-grid button,
+.contacto-form-grid .hint {
+  grid-column: 1 / -1;
+}
+
+.page-contacto--public input,
+.page-contacto--public textarea {
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: 1rem;
+  background: #ffffff;
+  color: #1b1b1b;
+}
+
+.page-contacto--public input:focus,
+.page-contacto--public textarea:focus {
+  outline: 2px solid rgba(212, 175, 55, 0.35);
+  outline-offset: 1px;
+}
+
+@media (max-width: 900px) {
+  .contacto-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contacto-form-grid {
+    grid-template-columns: 1fr;
+  }
+}

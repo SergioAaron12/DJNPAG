@@ -1,0 +1,50 @@
+.admin-login {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.admin-login .form {
+  text-align: left;
+}
+
+.section__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  background: var(--card);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 760px;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.95rem;
+}
+
+th {
+  background: #121720;
+  font-weight: 600;
+}
+
+@media (max-width: 720px) {
+  table {
+    min-width: 640px;
+  }
+}

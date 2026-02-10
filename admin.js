@@ -23,7 +23,7 @@ const renderTabla = (compras) => {
   comprasCargadas = compras;
   if (!compras.length) {
     adminTabla.innerHTML =
-      "<tr><td colspan='7'>Aún no hay compras registradas.</td></tr>";
+      "<tr><td colspan='10'>Aún no hay compras registradas.</td></tr>";
     return;
   }
 
@@ -61,6 +61,12 @@ const cargarCompras = async (token) => {
 };
 
 const exportarExcel = () => {
+  if (typeof XLSX === "undefined") {
+    adminEstado.textContent =
+      "No se pudo cargar el exportador de Excel. Recarga la página.";
+    return;
+  }
+
   if (!comprasCargadas.length) {
     adminEstado.textContent = "No hay compras para exportar.";
     return;

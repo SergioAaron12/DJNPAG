@@ -6,19 +6,34 @@ formContacto.addEventListener("submit", (event) => {
   const datos = new FormData(formContacto);
   const nombre = datos.get("nombre").trim();
   const correo = datos.get("correo").trim();
+  const telefono = datos.get("telefono").trim();
   const mensaje = datos.get("mensaje").trim();
 
-  if (mensaje.length < 10 || mensaje.length > 300) {
+  if (mensaje.length < 10 || mensaje.length > 500) {
     contactoEstado.textContent =
       "El mensaje debe tener entre 10 y 300 caracteres.";
     return;
   }
 
-  const asunto = encodeURIComponent("Contacto DJN");
-  const cuerpo = encodeURIComponent(
-    `Nombre: ${nombre}\nCorreo: ${correo}\nMensaje: ${mensaje}`
-  );
-
-  window.location.href = `mailto:elsakitodewea@gmail.com?subject=${asunto}&body=${cuerpo}`;
-  contactoEstado.textContent = "Abriendo tu correo para enviar el mensaje.";
+  fetch("/api/contacto", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ nombre, correo, telefono, mensaje }),
+  })
+    .then((respuesta) => {
+      if (!respuesta.ok) {
+        throw new Error("Error enviando mensaje");
+      }
+      return respuesta.json();
+    })
+    .then(() => {
+      contactoEstado.textContent = "Mensaje enviado correctamente.";
+      formContacto.reset();
+    })
+    .catch(() => {
+      contactoEstado.textContent =
+        "No se pudo enviar el mensaje. Intenta de nuevo.";
+    });
 });

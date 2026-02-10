@@ -1,4 +1,5 @@
 const PRECIO_UNITARIO = 125;
+const PRODUCTO_NOMBRE = "Sistema Avicola Integral DJN - Modelo Pro 120";
 const formCompra = document.getElementById("formCompra");
 const mensaje = document.getElementById("mensaje");
 const btnComprar = document.getElementById("btnComprar");
@@ -16,7 +17,7 @@ const prepararCompra = (data) => {
     cantidad,
     direccion: data.direccion.trim(),
     metodo: data.metodo,
-    producto: "Jaula de gallina ponedora",
+    producto: PRODUCTO_NOMBRE,
     precioUnitario: PRECIO_UNITARIO,
     total: cantidad * PRECIO_UNITARIO,
   };
@@ -107,3 +108,71 @@ const iniciarPagoWebpay = async () => {
 if (btnPagarWebpay) {
   btnPagarWebpay.addEventListener("click", iniciarPagoWebpay);
 }
+
+const sliderSlides = Array.from(document.querySelectorAll(".slider__slide"));
+let sliderIndex = 0;
+
+const iniciarSlider = () => {
+  if (sliderSlides.length <= 1) return;
+
+  setInterval(() => {
+    sliderSlides[sliderIndex].classList.remove("is-active");
+    sliderIndex = (sliderIndex + 1) % sliderSlides.length;
+    sliderSlides[sliderIndex].classList.add("is-active");
+  }, 4500);
+};
+
+iniciarSlider();
+
+const setupModal = (triggerId, modalId) => {
+  const trigger = document.getElementById(triggerId);
+  const modal = document.getElementById(modalId);
+  const closeButton = modal?.querySelector(".modal__close");
+
+  const open = () => {
+    if (!modal) return;
+    modal.hidden = false;
+    document.body.style.overflow = "hidden";
+  };
+
+  const close = () => {
+    if (!modal) return;
+    modal.hidden = true;
+    document.body.style.overflow = "";
+  };
+
+  if (trigger) {
+    trigger.addEventListener("click", open);
+  }
+
+  if (closeButton) {
+    closeButton.addEventListener("click", close);
+  }
+
+  if (modal) {
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) {
+        close();
+      }
+    });
+  }
+
+  return { modal, close };
+};
+
+const modals = [
+  setupModal("bebederoTrigger", "bebederoModal"),
+  setupModal("comederoTrigger", "comederoModal"),
+  setupModal("jaulasTrigger", "jaulasModal"),
+  setupModal("estanqueTrigger", "estanqueModal"),
+];
+
+document.addEventListener("keydown", (event) => {
+  if (event.key !== "Escape") return;
+
+  modals.forEach(({ modal, close }) => {
+    if (modal && !modal.hidden) {
+      close();
+    }
+  });
+});
