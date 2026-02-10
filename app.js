@@ -1,4 +1,4 @@
-const PRECIO_UNITARIO = 125;
+const PRECIO_UNITARIO = 300000;
 const PRODUCTO_NOMBRE = "Sistema Avicola Integral DJN - Modelo Pro 120";
 const formCompra = document.getElementById("formCompra");
 const mensaje = document.getElementById("mensaje");

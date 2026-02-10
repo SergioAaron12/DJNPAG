@@ -197,7 +197,7 @@ app.post("/webpay/retorno", async (req, res) => {
         <h2>Pago confirmado - DJN</h2>
         <p><strong>Estado:</strong> ${status}</p>
         <p><strong>Orden:</strong> ${order}</p>
-        <p><strong>Monto:</strong> $${amount}</p>
+        <p><strong>Monto:</strong> ${formatCLP(amount)}</p>
         <p><strong>Fecha:</strong> ${new Date().toLocaleString("es-ES")}</p>
       `;
 
@@ -226,7 +226,7 @@ app.post("/webpay/retorno", async (req, res) => {
             <h2>Resultado del pago</h2>
             <p><strong>Estado:</strong> ${status}</p>
             <p><strong>Orden:</strong> ${order}</p>
-            <p><strong>Monto:</strong> $${amount}</p>
+            <p><strong>Monto:</strong> ${formatCLP(amount)}</p>
             <p><a href="/index.html">Volver al sitio</a></p>
           </div>
         </body>
