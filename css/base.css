@@ -438,16 +438,22 @@ textarea {
 
   .topbar__contact {
     width: 100%;
-    flex-wrap: wrap;
-    row-gap: 10px;
-    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 10px;
+    flex-direction: row;
     align-items: flex-end;
     text-align: right;
+    justify-content: flex-end;
   }
 
   .contact-item {
     font-size: 0.85rem;
     justify-content: flex-end;
+  }
+
+  .contact-item a,
+  .btn--contacto {
+    white-space: nowrap;
   }
 
   .btn--contacto {
