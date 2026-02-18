@@ -448,10 +448,16 @@ textarea {
     margin-bottom: 0;
   }
 
+  .brand__logo {
+    width: 96px;
+    height: 96px;
+    border-radius: 0;
+  }
+
   .topbar__contact {
     width: auto;
     flex-wrap: nowrap;
-    gap: 10px;
+    gap: 8px;
     flex-direction: row;
     align-items: flex-end;
     text-align: right;
@@ -459,10 +465,25 @@ textarea {
     justify-self: end;
   }
 
+  .contact-item {
+    font-size: 0.75rem;
+    justify-content: flex-end;
+  }
+
+  .icon {
+    width: 16px;
+    height: 16px;
+  }
+
 
   .contact-item a,
   .btn--contacto {
     white-space: nowrap;
+  }
+
+  .btn--contacto {
+    padding: 6px 12px;
+    font-size: 0.75rem;
   }
 
   .form {
