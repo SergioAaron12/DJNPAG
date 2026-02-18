@@ -53,6 +53,63 @@ img {
   gap: 36px;
 }
 
+.topbar {
+  background: #000000;
+  color: #ffffff;
+}
+
+.topbar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: nowrap;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 12px clamp(16px, 4vw, 48px);
+}
+
+.topbar__inner.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
+.topbar .brand {
+  margin-bottom: 0;
+}
+
+.topbar__contact {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  flex-wrap: nowrap;
+  margin-left: auto;
+}
+
+.contact-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.contact-item a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.contact-item a:hover {
+  color: #e5e7eb;
+}
+
 .brand {
   display: flex;
   align-items: center;
@@ -378,12 +435,12 @@ textarea {
   }
 
   .topbar__inner {
-    grid-template-columns: 1fr;
+    flex-wrap: nowrap;
     gap: 12px;
   }
 
   .topbar__contact {
-    justify-content: flex-start;
+    justify-content: flex-end;
     gap: 12px;
   }
 }
