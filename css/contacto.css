@@ -149,3 +149,24 @@
     grid-template-columns: 1fr;
   }
 }
+
+@media (max-width: 600px) {
+  .page-contacto--public {
+    background-attachment: scroll;
+  }
+
+  .contacto-card {
+    padding: 18px;
+  }
+
+  .contacto-list li {
+    grid-template-columns: 34px 1fr;
+    gap: 12px;
+  }
+
+  .contacto-icon {
+    width: 34px;
+    height: 34px;
+    font-size: 0.85rem;
+  }
+}

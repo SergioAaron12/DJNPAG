@@ -399,6 +399,26 @@ textarea {
   color: #111827;
 }
 
+@media (max-width: 900px) {
+  body {
+    background-attachment: scroll;
+  }
+
+  .page-light {
+    background-attachment: scroll;
+  }
+
+  .topbar__inner {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .topbar__contact {
+    justify-content: flex-start;
+    gap: 12px;
+  }
+}
+
 .page-light .form,
 .page-light .table-wrapper {
   background: #ffffff;

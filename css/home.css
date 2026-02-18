@@ -390,4 +390,46 @@
     flex-direction: column;
     align-items: stretch;
   }
+
+  .slider__track {
+    height: clamp(220px, 70vw, 360px);
+  }
+
+  .slider__overlay .container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .slider__cta-inner {
+    max-width: 100%;
+  }
+
+  .nav {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero__grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .hero__image {
+    max-height: 220px;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero__card {
+    padding: 18px;
+  }
+
+  .hero__features {
+    font-size: 0.95rem;
+  }
 }
