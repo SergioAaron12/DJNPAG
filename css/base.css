@@ -448,11 +448,6 @@ textarea {
     margin-bottom: 0;
   }
 
-  .brand__logo {
-    width: 84px;
-    height: 84px;
-  }
-
   .topbar__contact {
     width: auto;
     flex-wrap: nowrap;
