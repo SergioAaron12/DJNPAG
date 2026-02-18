@@ -292,6 +292,30 @@ const modals = [
 
 // Asegurar que la galería se inicialice después de cargar el DOM
 window.addEventListener("DOMContentLoaded", () => {
+      // Soporte para swipe en móvil
+      let touchStartX = 0;
+      let touchEndX = 0;
+      if (galleryModalImage) {
+        galleryModalImage.addEventListener("touchstart", (e) => {
+          touchStartX = e.touches[0].clientX;
+        });
+        galleryModalImage.addEventListener("touchmove", (e) => {
+          touchEndX = e.touches[0].clientX;
+        });
+        galleryModalImage.addEventListener("touchend", () => {
+          if (touchEndX === 0) return;
+          const diff = touchEndX - touchStartX;
+          if (Math.abs(diff) > 50) {
+            if (diff < 0) {
+              showGalleryImage(galleryCurrentIndex + 1); // Swipe izquierda
+            } else {
+              showGalleryImage(galleryCurrentIndex - 1); // Swipe derecha
+            }
+          }
+          touchStartX = 0;
+          touchEndX = 0;
+        });
+      }
     if (galleryModal) {
       galleryModal.addEventListener("click", (event) => {
         // Solo cerrar si se hace clic directamente en el overlay
