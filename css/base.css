@@ -392,6 +392,18 @@ textarea {
   color: #1b1b1b;
 }
 
+.page-light .topbar__contact {
+  color: var(--text);
+}
+
+.page-light .contact-item a {
+  color: var(--text);
+}
+
+.page-light .contact-item a:hover {
+  color: #ffffff;
+}
+
 .page-light .hero {
   background: transparent;
 }

@@ -304,6 +304,11 @@
   z-index: 1000;
 }
 
+.modal-overlay--gallery {
+  background: rgba(0, 0, 0, 0.85);
+  padding: 0;
+}
+
 .modal-overlay[hidden] {
   display: none;
 }
@@ -318,6 +323,30 @@
   position: relative;
   box-shadow: 0 24px 60px rgba(15, 23, 42, 0.3);
   overflow-y: auto;
+}
+
+.modal--gallery {
+  width: 100%;
+  max-height: none;
+  background: transparent;
+  color: inherit;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+  overflow: visible;
+}
+
+.modal--gallery .modal__section {
+  margin: 0;
+  padding: 0;
+}
+
+.modal--gallery .modal__img {
+  margin: 0 auto;
+  width: 100%;
+  height: auto;
+  max-height: 100vh;
+  border-radius: 0;
 }
 
 .modal h3 {

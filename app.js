@@ -220,7 +220,6 @@ const setupModal = (triggerId, modalId) => {
 
 const galleryModal = document.getElementById("galleryModal");
 const galleryModalImage = document.getElementById("galleryModalImage");
-const galleryCloseButton = galleryModal?.querySelector(".modal__close");
 
 const closeGallery = () => {
   if (!galleryModal) return;
@@ -236,16 +235,16 @@ const openGallery = (src, alt) => {
   document.body.style.overflow = "hidden";
 };
 
-if (galleryCloseButton) {
-  galleryCloseButton.addEventListener("click", closeGallery);
-}
-
 if (galleryModal) {
   galleryModal.addEventListener("click", (event) => {
     if (event.target === galleryModal) {
       closeGallery();
     }
   });
+}
+
+if (galleryModalImage) {
+  galleryModalImage.addEventListener("click", closeGallery);
 }
 
 const galleryImages = document.querySelectorAll(".vision-gallery__item img");
