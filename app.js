@@ -218,6 +218,43 @@ const setupModal = (triggerId, modalId) => {
   return { modal, close };
 };
 
+const galleryModal = document.getElementById("galleryModal");
+const galleryModalImage = document.getElementById("galleryModalImage");
+const galleryCloseButton = galleryModal?.querySelector(".modal__close");
+
+const closeGallery = () => {
+  if (!galleryModal) return;
+  galleryModal.hidden = true;
+  document.body.style.overflow = "";
+};
+
+const openGallery = (src, alt) => {
+  if (!galleryModal || !galleryModalImage) return;
+  galleryModalImage.src = src;
+  galleryModalImage.alt = alt || "Imagen de galeria";
+  galleryModal.hidden = false;
+  document.body.style.overflow = "hidden";
+};
+
+if (galleryCloseButton) {
+  galleryCloseButton.addEventListener("click", closeGallery);
+}
+
+if (galleryModal) {
+  galleryModal.addEventListener("click", (event) => {
+    if (event.target === galleryModal) {
+      closeGallery();
+    }
+  });
+}
+
+const galleryImages = document.querySelectorAll(".vision-gallery__item img");
+galleryImages.forEach((img) => {
+  img.addEventListener("click", () => {
+    openGallery(img.src, img.alt);
+  });
+});
+
 const modals = [
   setupModal("bebederoTrigger", "bebederoModal"),
   setupModal("comederoTrigger", "comederoModal"),
@@ -225,6 +262,7 @@ const modals = [
   setupModal("atrilesTrigger", "atrilesModal"),
   setupModal("estanqueTrigger", "estanqueModal"),
   setupModal("productoTrigger", "productoModal"),
+  { modal: galleryModal, close: closeGallery },
 ];
 
 document.addEventListener("keydown", (event) => {

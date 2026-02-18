@@ -232,6 +232,7 @@
   height: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
+  cursor: zoom-in;
   transition: transform 0.3s ease;
 }
 
