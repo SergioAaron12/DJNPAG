@@ -119,6 +119,8 @@ img {
 
 .brand__logo {
   width: 80px;
+  height: auto;
+  border-radius: 0;
 }
 
 .icon {
@@ -459,7 +461,6 @@ textarea {
 
   .brand__logo {
     width: 96px;
-    height: 96px;
     border-radius: 0;
   }
 
