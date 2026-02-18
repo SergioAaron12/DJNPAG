@@ -19,10 +19,13 @@ app.get("/admin.html", (req, res) => {
   res.redirect(301, "/admin");
 });
 app.get("/contacto.html", (req, res) => {
-  res.redirect(301, "/contactodjn");
+  res.redirect(301, "/contacto");
 });
 app.get("/admin", (req, res) => {
   res.sendFile(path.join(__dirname, "admin.html"));
+});
+app.get("/contacto", (req, res) => {
+  res.sendFile(path.join(__dirname, "contacto.html"));
 });
 app.get("/contactodjn", (req, res) => {
   res.sendFile(path.join(__dirname, "contacto.html"));
