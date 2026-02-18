@@ -234,18 +234,18 @@ const galleryImagesArr = Array.from(galleryImages);
 let galleryCurrentIndex = 0;
 
 function showGalleryImage(index) {
-  if (!galleryModalImage) return;
+  if (!galleryModalImage || !galleryModal) return;
   galleryCurrentIndex = (index + galleryImagesArr.length) % galleryImagesArr.length;
   const img = galleryImagesArr[galleryCurrentIndex];
   galleryModalImage.src = img.src;
   galleryModalImage.alt = img.alt || "Imagen de galeria";
+  galleryModal.hidden = false;
+  document.body.style.overflow = "hidden";
 }
 
 galleryImagesArr.forEach((img, idx) => {
   img.addEventListener("click", () => {
     showGalleryImage(idx);
-    galleryModal.hidden = false;
-    document.body.style.overflow = "hidden";
   });
 });
 
