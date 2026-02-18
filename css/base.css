@@ -444,6 +444,11 @@ textarea {
     grid-template-columns: auto 1fr;
   }
 
+  .brand__logo {
+    width: 96px;
+    height: 96px;
+  }
+
   .brand {
     margin-bottom: 0;
   }
