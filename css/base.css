@@ -172,11 +172,13 @@ h1 {
   display: grid;
   gap: 16px;
   border: 1px solid var(--border);
+  width: 100%;
 }
 
 .field {
   display: grid;
   gap: 8px;
+  width: 100%;
 }
 
 label {
@@ -192,6 +194,8 @@ textarea {
   font-size: 1rem;
   background: #0f141b;
   color: var(--text);
+  width: 100%;
+  max-width: 100%;
 }
 
 .btn {
@@ -202,6 +206,7 @@ textarea {
   text-decoration: none;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  max-width: 100%;
 }
 
 .btn--primary {
@@ -443,6 +448,10 @@ textarea {
   .btn--contacto {
     padding: 10px 18px;
     font-size: 0.9rem;
+  }
+
+  .form {
+    padding: 18px;
   }
 }
 
