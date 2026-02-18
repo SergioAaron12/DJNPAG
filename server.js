@@ -15,6 +15,18 @@ app.use(express.urlencoded({ extended: true }));
 app.get("/index.html", (req, res) => {
   res.redirect(301, "/");
 });
+app.get("/admin.html", (req, res) => {
+  res.redirect(301, "/admin");
+});
+app.get("/contacto.html", (req, res) => {
+  res.redirect(301, "/contactodjn");
+});
+app.get("/admin", (req, res) => {
+  res.sendFile(path.join(__dirname, "admin.html"));
+});
+app.get("/contactodjn", (req, res) => {
+  res.sendFile(path.join(__dirname, "contacto.html"));
+});
 app.use(express.static(path.join(__dirname)));
 
 const transporter = nodemailer.createTransport({
