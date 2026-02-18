@@ -1,3 +1,7 @@
+const galleryModalClose = document.getElementById("galleryModalClose");
+if (galleryModalClose) {
+  galleryModalClose.addEventListener("click", closeGallery);
+}
 const PRECIO_UNITARIO = 380000;
 const PRODUCTO_NOMBRE = "Sistema Avicola Integral DJN - Modelo Pro A 120";
 const formCompra = document.getElementById("formCompra");
@@ -229,8 +233,7 @@ const closeGallery = () => {
 
 const galleryArrowLeft = document.getElementById("galleryArrowLeft");
 const galleryArrowRight = document.getElementById("galleryArrowRight");
-const galleryImages = document.querySelectorAll(".vision-gallery__item img");
-const galleryImagesArr = Array.from(galleryImages);
+const galleryImagesArr = Array.from(document.querySelectorAll(".vision-gallery__item img"));
 let galleryCurrentIndex = 0;
 
 function showGalleryImage(index) {
@@ -239,14 +242,13 @@ function showGalleryImage(index) {
   const img = galleryImagesArr[galleryCurrentIndex];
   galleryModalImage.src = img.src;
   galleryModalImage.alt = img.alt || "Imagen de galeria";
+  galleryModalImage.classList.add("modal__img");
   galleryModal.hidden = false;
   document.body.style.overflow = "hidden";
 }
 
 galleryImagesArr.forEach((img, idx) => {
-  img.addEventListener("click", () => {
-    showGalleryImage(idx);
-  });
+  // Eliminado: solo se inicializa en DOMContentLoaded
 });
 
 if (galleryArrowLeft) {
@@ -275,11 +277,7 @@ if (galleryModalImage) {
 }
 
 const galleryImages = document.querySelectorAll(".vision-gallery__item img");
-galleryImages.forEach((img) => {
-  img.addEventListener("click", () => {
-    openGallery(img.src, img.alt);
-  });
-});
+// Lógica de galería ya implementada arriba con showGalleryImage
 
 const modals = [
   setupModal("bebederoTrigger", "bebederoModal"),
@@ -291,9 +289,31 @@ const modals = [
   { modal: galleryModal, close: closeGallery },
 ];
 
+
+// Asegurar que la galería se inicialice después de cargar el DOM
+window.addEventListener("DOMContentLoaded", () => {
+    if (galleryModal) {
+      galleryModal.addEventListener("click", (event) => {
+        // Solo cerrar si se hace clic directamente en el overlay
+        if (event.target === galleryModal) {
+          closeGallery();
+        }
+      });
+    }
+  galleryImagesArr.forEach((img, idx) => {
+    img.addEventListener("click", (e) => {
+      e.preventDefault();
+      showGalleryImage(idx);
+    });
+  });
+  const galleryModalClose = document.getElementById("galleryModalClose");
+  if (galleryModalClose) {
+    galleryModalClose.addEventListener("click", closeGallery);
+  }
+});
+
 document.addEventListener("keydown", (event) => {
   if (event.key !== "Escape") return;
-
   modals.forEach(({ modal, close }) => {
     if (modal && !modal.hidden) {
       close();
