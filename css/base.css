@@ -419,6 +419,33 @@ textarea {
   }
 }
 
+@media (max-width: 520px) {
+  .topbar__inner {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .brand__logo {
+    width: 52px;
+    height: 52px;
+  }
+
+  .topbar__contact {
+    width: 100%;
+    flex-wrap: wrap;
+    row-gap: 10px;
+  }
+
+  .contact-item {
+    font-size: 0.85rem;
+  }
+
+  .btn--contacto {
+    padding: 10px 18px;
+    font-size: 0.9rem;
+  }
+}
+
 .page-light .form,
 .page-light .table-wrapper {
   background: #ffffff;

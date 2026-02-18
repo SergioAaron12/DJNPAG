@@ -404,6 +404,10 @@
     max-width: 100%;
   }
 
+  .slider__title {
+    line-height: 1.15;
+  }
+
   .nav {
     justify-content: flex-start;
   }
