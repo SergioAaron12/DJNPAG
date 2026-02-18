@@ -18,7 +18,7 @@
       <div class="topbar">
         <div class="topbar__inner container">
           <div class="brand">
-            <a href="index.html" aria-label="Ir al inicio">
+            <a href="/" aria-label="Ir al inicio">
               <img src="assets/logo.png" alt="Logo DJN" class="brand__logo" />
             </a>
           </div>
@@ -104,15 +104,18 @@
             </div>
           </div>
           <div class="hero__card">
-            <img
-              src="assets/producto.png"
-              alt="Sistema Avicola Integral DJN - Modelo Pro 120"
-            />
+            <button class="hero__image-button" id="productoTrigger" type="button">
+              <img
+                class="hero__image"
+                src="assets/producto.png"
+                alt="Sistema Avicola Integral DJN - Modelo Pro A 120"
+              />
+            </button>
             <ul class="hero__features">
-              <li>Módulos totalmente equipados</li>
-              <li>Capacidad para 120 gallinas ponedoras</li>
-              <li></li>
-              <li></li>
+              <li>Jaula para pollos: Tipo A, 3 niveles, 2 lados, 5 nidos/tira; 30 nidos/juego, 120 pollos.</li>
+              <li>Galvanizado en caliente de 275 g/m², 15 años de vida útil.</li>
+              <li>Dimensiones de instalación: 2,15 m (largo) x 2,3 m (ancho) x 1,5 m (alto).</li>
+              <li>Soporte de jaula galvanizado en caliente.</li>
             </ul>
           </div>
         </div>
@@ -164,7 +167,10 @@
                 <button class="specs__link" id="jaulasTrigger" type="button">
                   Jaulas
                 </button>
-                , Atriles galvanizados
+                ,
+                <button class="specs__link" id="atrilesTrigger" type="button">
+                  Atriles galvanizados
+                </button>
                 ,
                 <button class="specs__link" id="estanqueTrigger" type="button">
                   Estanque para agua
@@ -183,9 +189,9 @@
       </section>
 
       <section class="section" id="comprar">
-        <h2>Comprar Modelo Pro  A 120</h2>
+        <h2>Comprar Modelo Pro A 120</h2>
         <p>
-          Completa los datos y guarda la compra del Modelo Pro 120. Te
+          Completa los datos y guarda la compra del Modelo Pro A 120. Te
           contactaremos para coordinar la entrega.
         </p>
 
@@ -213,8 +219,39 @@
           <div class="field">
             <label for="metodo">Método de pago</label>
             <select id="metodo" name="metodo" required>
+              <option value="" selected>Selecciona un metodo</option>
               <option value="Transferencia">Transferencia</option>
             </select>
+          </div>
+          <div class="field">
+            <button
+              class="btn btn--dark"
+              type="button"
+              id="btnTransferencia"
+              hidden
+            >
+              Mostrar datos de transferencia
+            </button>
+            <div class="transferencia" id="transferenciaData" hidden>
+              <h3>Datos de Transferencia</h3>
+              <p><strong>Nombre:</strong> TRANSPORTES DANIJEAN HECTOR ANTICONA E.I.R.L</p>
+              <p><strong>RUT:</strong> 76 523 204 - K</p>
+              <p><strong>Banco:</strong> BANCO SCOTIABANK</p>
+              <p><strong>Tipo de Cuenta:</strong> CUENTA CORRIENTE</p>
+              <p><strong>Nº de Cuenta:</strong> 988 226 696</p>
+              <p><strong>Email:</strong> GRUPO.MOVIREC2023@GMAIL.COM</p>
+            </div>
+          </div>
+          <div class="field">
+            <label for="comprobante">Comprobante de transferencia (jpg/png)</label>
+            <input
+              type="file"
+              id="comprobante"
+              name="comprobante"
+              accept="image/jpeg,image/png"
+              required
+            />
+            <p class="hint">Sube una captura legible (maximo 5 MB).</p>
           </div>
           <button class="btn btn--primary" type="submit">Guardar compra</button>
           <p class="hint" id="mensaje"></p>
@@ -233,6 +270,11 @@
             alt="Boquillas del bebedero"
             class="modal__img modal__img--small"
           />
+          <img
+            src="assets/chupete.1.png"
+            alt="Bebedero de chupete en detalle"
+            class="modal__img modal__img--small"
+          />
           <p>
             El bebedero de chupete es un sistema de hidratación eficiente para
             gallinas ponedoras. Con boquillas de acero inoxidable, proporciona
@@ -247,16 +289,23 @@
         <button class="modal__close" type="button" aria-label="Cerrar">x</button>
         <h3 id="comederoTitle">Comederos Platicos</h3>
         <div class="modal__section">
-          <img
-            src="assets/comedero.png"
-            alt="Comedero plastico de alta durabilidad"
-            class="modal__img modal__img--equal"
-          />
-          <img
-            src="assets/comedero1.jpeg"
-            alt="Comedero plastico en detalle"
-            class="modal__img modal__img--equal"
-          />
+          <div class="modal__gallery">
+            <img
+              src="assets/comedero.png"
+              alt="Comedero plastico de alta durabilidad"
+              class="modal__img modal__img--equal"
+            />
+            <img
+              src="assets/comedero1.jpeg"
+              alt="Comedero plastico en detalle"
+              class="modal__img modal__img--equal"
+            />
+            <img
+              src="assets/comedero.2.png"
+              alt="Comedero plastico en detalle"
+              class="modal__img modal__img--equal"
+            />
+          </div>
           <p>
             Comederos platicos de alta durabilidad, faciles de limpiar y
             resistentes al uso diario en ambientes avicolas.
@@ -294,6 +343,23 @@
       </div>
     </div>
 
+    <div class="modal-overlay" id="atrilesModal" hidden>
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="atrilesTitle">
+        <button class="modal__close" type="button" aria-label="Cerrar">x</button>
+        <h3 id="atrilesTitle">Atril Galvanizado Perfil U (1.5 / 2 mm)</h3>
+        <div class="modal__section">
+          <img
+            src="assets/Atriles.png"
+            alt="Atriles galvanizados"
+            class="modal__img"
+          />
+          <p>Material: Acero galvanizado de alta resistencia.</p>
+          <p>Espesores: Disponibles en 1.5 mm y 2.0 mm.</p>
+          <p>Diseño: Estructura tipo atril optimizada para jaulas de niveles.</p>
+        </div>
+      </div>
+    </div>
+
     <div class="modal-overlay" id="estanqueModal" hidden>
       <div class="modal" role="dialog" aria-modal="true" aria-labelledby="estanqueTitle">
         <button class="modal__close" type="button" aria-label="Cerrar">x</button>
@@ -314,6 +380,20 @@
             <source src="assets/estanque_video.mp4" type="video/mp4" />
             Tu navegador no soporta video HTML5.
           </video>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-overlay" id="productoModal" hidden>
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="productoTitle">
+        <button class="modal__close" type="button" aria-label="Cerrar">x</button>
+        <h3 id="productoTitle">Sistema Avicola Integral DJN - Modelo Pro A 120</h3>
+        <div class="modal__section">
+          <img
+            src="assets/producto.png"
+            alt="Sistema Avicola Integral DJN - Modelo Pro A 120"
+            class="modal__img"
+          />
         </div>
       </div>
     </div>
@@ -352,7 +432,7 @@
         </div>
         <div class="footer__col">
           <h4>Acceso</h4>
-          <a href="index.html">Inicio</a>
+          <a href="/">Inicio</a>
           <a href="contacto.html">Contacto</a>
           <a href="admin.html">Admin</a>
         </div>

@@ -5,12 +5,16 @@ const path = require("path");
 const nodemailer = require("nodemailer");
 const { WebpayPlus, Options, Environment } = require("transbank-sdk");
 const fs = require("fs/promises");
+const multer = require("multer");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json({ limit: "200kb" }));
 app.use(express.urlencoded({ extended: true }));
+app.get("/index.html", (req, res) => {
+  res.redirect(301, "/");
+});
 app.use(express.static(path.join(__dirname)));
 
 const transporter = nodemailer.createTransport({
@@ -64,14 +68,41 @@ const formatCLP = (value) =>
     maximumFractionDigits: 0,
   }).format(Number(value || 0));
 
-app.post("/api/compra", async (req, res) => {
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 5 * 1024 * 1024 },
+  fileFilter: (req, file, cb) => {
+    const tiposPermitidos = ["image/jpeg", "image/png"];
+    if (!tiposPermitidos.includes(file.mimetype)) {
+      return cb(new Error("Formato de comprobante no permitido"));
+    }
+    return cb(null, true);
+  },
+});
+
+app.post("/api/compra", upload.single("comprobante"), async (req, res) => {
   try {
     const compra = req.body;
+    const comprobante = req.file;
     if (!destinatario) {
       return res
         .status(500)
         .json({ ok: false, message: "DEST_EMAIL no configurado" });
     }
+
+    if (!comprobante) {
+      return res
+        .status(400)
+        .json({ ok: false, message: "Comprobante requerido" });
+    }
+
+    if (!compra?.nombre || !compra?.correo || !compra?.telefono) {
+      return res.status(400).json({ ok: false, message: "Datos invalidos" });
+    }
+
+    compra.comprobanteNombre = comprobante.originalname;
+    compra.comprobanteTipo = comprobante.mimetype;
+    compra.comprobanteTamano = comprobante.size;
 
     await guardarCompraEnArchivo(compra);
 
@@ -96,10 +127,29 @@ app.post("/api/compra", async (req, res) => {
       to: destinatario,
       subject: "Nueva compra - DJN",
       html,
+      attachments: [
+        {
+          filename: comprobante.originalname,
+          content: comprobante.buffer,
+          contentType: comprobante.mimetype,
+        },
+      ],
     });
 
     res.json({ ok: true });
   } catch (error) {
+    if (error?.code === "LIMIT_FILE_SIZE") {
+      return res
+        .status(400)
+        .json({ ok: false, message: "Comprobante supera 5 MB" });
+    }
+
+    if (error?.message === "Formato de comprobante no permitido") {
+      return res
+        .status(400)
+        .json({ ok: false, message: "Formato de comprobante no permitido" });
+    }
+
     res.status(500).json({ ok: false, message: "Error enviando correo" });
   }
 });
@@ -234,7 +284,7 @@ app.post("/webpay/retorno", async (req, res) => {
             <p><strong>Estado:</strong> ${status}</p>
             <p><strong>Orden:</strong> ${order}</p>
             <p><strong>Monto:</strong> ${formatCLP(amount)}</p>
-            <p><a href="/index.html">Volver al sitio</a></p>
+            <p><a href="/">Volver al sitio</a></p>
           </div>
         </body>
       </html>

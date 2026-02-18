@@ -4,6 +4,9 @@ const formCompra = document.getElementById("formCompra");
 const mensaje = document.getElementById("mensaje");
 const btnComprar = document.getElementById("btnComprar");
 const btnPagarWebpay = document.getElementById("btnPagarWebpay");
+const metodoPago = document.getElementById("metodo");
+const btnTransferencia = document.getElementById("btnTransferencia");
+const transferenciaData = document.getElementById("transferenciaData");
 
 
 const prepararCompra = (data) => {
@@ -23,17 +26,23 @@ const prepararCompra = (data) => {
   };
 };
 
-const enviarCompraPorCorreo = async (compra) => {
+const enviarCompraPorCorreo = async (formData) => {
   const respuesta = await fetch("/api/compra", {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(compra),
+    body: formData,
   });
 
   if (!respuesta.ok) {
-    throw new Error("No se pudo enviar el correo");
+    let detalle = "No se pudo enviar el correo";
+    try {
+      const data = await respuesta.json();
+      if (data?.message) {
+        detalle = data.message;
+      }
+    } catch (error) {
+      // Ignore JSON parse errors and keep default message.
+    }
+    throw new Error(detalle);
   }
 };
 
@@ -43,16 +52,39 @@ formCompra.addEventListener("submit", (event) => {
   const formData = new FormData(formCompra);
   const datos = Object.fromEntries(formData.entries());
   const compra = prepararCompra(datos);
+  const comprobante = formData.get("comprobante");
 
-  enviarCompraPorCorreo(compra)
+  if (!(comprobante instanceof File) || comprobante.size === 0) {
+    mensaje.textContent = "Debes subir la captura del comprobante.";
+    return;
+  }
+
+  const tiposPermitidos = ["image/jpeg", "image/png"];
+  if (!tiposPermitidos.includes(comprobante.type)) {
+    mensaje.textContent = "El comprobante debe ser una imagen JPG o PNG.";
+    return;
+  }
+
+  const maxSize = 5 * 1024 * 1024;
+  if (comprobante.size > maxSize) {
+    mensaje.textContent = "El comprobante supera el maximo de 5 MB.";
+    return;
+  }
+
+  Object.entries(compra).forEach(([key, value]) => {
+    formData.set(key, value);
+  });
+
+  enviarCompraPorCorreo(formData)
     .then(() => {
       mensaje.textContent = "Compra guardada y enviada por correo.";
       formCompra.reset();
       formCompra.cantidad.value = 1;
     })
-    .catch(() => {
-      mensaje.textContent =
-        "No se pudo enviar el correo. Revisa el servidor y vuelve a intentar.";
+    .catch((error) => {
+      mensaje.textContent = error?.message
+        ? error.message
+        : "No se pudo enviar el correo. Revisa el servidor y vuelve a intentar.";
     });
 });
 
@@ -107,6 +139,32 @@ const iniciarPagoWebpay = async () => {
 
 if (btnPagarWebpay) {
   btnPagarWebpay.addEventListener("click", iniciarPagoWebpay);
+}
+
+const actualizarTransferencia = () => {
+  if (!metodoPago || !btnTransferencia || !transferenciaData) return;
+  const esTransferencia = metodoPago.value === "Transferencia";
+
+  btnTransferencia.hidden = !esTransferencia;
+  if (!esTransferencia) {
+    transferenciaData.hidden = true;
+    btnTransferencia.textContent = "Mostrar datos de transferencia";
+  }
+};
+
+if (btnTransferencia && transferenciaData) {
+  btnTransferencia.addEventListener("click", () => {
+    const mostrar = transferenciaData.hidden;
+    transferenciaData.hidden = !mostrar;
+    btnTransferencia.textContent = mostrar
+      ? "Ocultar datos de transferencia"
+      : "Mostrar datos de transferencia";
+  });
+}
+
+if (metodoPago) {
+  metodoPago.addEventListener("change", actualizarTransferencia);
+  actualizarTransferencia();
 }
 
 const sliderSlides = Array.from(document.querySelectorAll(".slider__slide"));
@@ -164,7 +222,9 @@ const modals = [
   setupModal("bebederoTrigger", "bebederoModal"),
   setupModal("comederoTrigger", "comederoModal"),
   setupModal("jaulasTrigger", "jaulasModal"),
+  setupModal("atrilesTrigger", "atrilesModal"),
   setupModal("estanqueTrigger", "estanqueModal"),
+  setupModal("productoTrigger", "productoModal"),
 ];
 
 document.addEventListener("keydown", (event) => {

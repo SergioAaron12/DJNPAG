@@ -37,6 +37,20 @@
   transition: opacity 0.6s ease;
 }
 
+.transferencia {
+  margin-top: 12px;
+  padding: 16px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+}
+.transferencia p {
+  margin: 6px 0;
+}
+.transferencia[hidden] {
+  display: none;
+}
 .slider__slide.is-active {
   opacity: 1;
 }
@@ -153,6 +167,23 @@
   border: 1px solid var(--border);
 }
 
+.hero__image-button {
+  display: block;
+  width: 100%;
+  border: none;
+  padding: 0;
+  background: transparent;
+  cursor: zoom-in;
+}
+
+.hero__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 240px;
+  object-fit: contain;
+}
+
 .hero__features {
   margin-top: 18px;
   display: grid;
@@ -261,6 +292,13 @@
   text-align: center;
 }
 
+.modal__gallery {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  align-items: stretch;
+}
+
 .modal__section h4 {
   font-size: 1.05rem;
   font-weight: 700;
@@ -294,7 +332,7 @@
 }
 
 .modal__img--small {
-  max-width: 360px;
+  max-width: 260px;
   justify-self: center;
 }
 
@@ -307,11 +345,11 @@
 }
 
 .modal__img--equal {
-  max-width: 360px;
+  max-width: none;
   width: 100%;
-  height: 220px;
+  height: 160px;
   object-fit: cover;
-  justify-self: center;
+  justify-self: stretch;
 }
 
 .page-light .nav__links a {
