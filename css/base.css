@@ -445,8 +445,8 @@ textarea {
   }
 
   .brand__logo {
-    width: 96px;
-    height: 96px;
+    width: 64px;
+    height: 64px;
   }
 
   .brand {
@@ -465,7 +465,7 @@ textarea {
   }
 
   .contact-item {
-    font-size: 0.78rem;
+    font-size: 0.85rem;
     justify-content: flex-end;
   }
 
@@ -480,8 +480,8 @@ textarea {
   }
 
   .btn--contacto {
-    padding: 8px 14px;
-    font-size: 0.8rem;
+    padding: 10px 18px;
+    font-size: 0.9rem;
   }
 
   .form {
