@@ -444,11 +444,6 @@ textarea {
     grid-template-columns: auto 1fr;
   }
 
-  .brand__logo {
-    width: 64px;
-    height: 64px;
-  }
-
   .brand {
     margin-bottom: 0;
   }
@@ -464,24 +459,10 @@ textarea {
     justify-self: end;
   }
 
-  .contact-item {
-    font-size: 0.85rem;
-    justify-content: flex-end;
-  }
-
-  .icon {
-    width: 18px;
-    height: 18px;
-  }
 
   .contact-item a,
   .btn--contacto {
     white-space: nowrap;
-  }
-
-  .btn--contacto {
-    padding: 10px 18px;
-    font-size: 0.9rem;
   }
 
   .form {
