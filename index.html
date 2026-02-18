@@ -434,16 +434,16 @@
 
     <div class="modal-overlay modal-overlay--gallery" id="galleryModal" hidden>
       <div class="modal modal--gallery" role="dialog" aria-modal="true" aria-label="Galería de fotos">
-        <button class="gallery-arrow gallery-arrow--left" id="galleryArrowLeft" aria-label="Anterior" type="button">&#8592;</button>
-        <div class="modal__section">
+        <div class="modal__section" style="position:relative;display:flex;align-items:center;justify-content:center;">
+          <button class="gallery-arrow gallery-arrow--left" id="galleryArrowLeft" aria-label="Anterior" type="button">&#8592;</button>
           <img
             id="galleryModalImage"
             src=""
             alt=""
             class="modal__img"
           />
+          <button class="gallery-arrow gallery-arrow--right" id="galleryArrowRight" aria-label="Siguiente" type="button">&#8594;</button>
         </div>
-        <button class="gallery-arrow gallery-arrow--right" id="galleryArrowRight" aria-label="Siguiente" type="button">&#8594;</button>
       </div>
     </div>
 
