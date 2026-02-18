@@ -428,7 +428,12 @@ textarea {
   .topbar__inner {
     padding-left: 16px;
     padding-right: 16px;
-    align-items: flex-start;
+    align-items: center;
+    grid-template-columns: auto 1fr;
+  }
+
+  .brand {
+    margin-bottom: 0;
   }
 
   .brand__logo {
@@ -437,18 +442,24 @@ textarea {
   }
 
   .topbar__contact {
-    width: 100%;
+    width: auto;
     flex-wrap: nowrap;
     gap: 10px;
     flex-direction: row;
     align-items: flex-end;
     text-align: right;
     justify-content: flex-end;
+    justify-self: end;
   }
 
   .contact-item {
-    font-size: 0.85rem;
+    font-size: 0.78rem;
     justify-content: flex-end;
+  }
+
+  .icon {
+    width: 18px;
+    height: 18px;
   }
 
   .contact-item a,
@@ -457,8 +468,8 @@ textarea {
   }
 
   .btn--contacto {
-    padding: 10px 18px;
-    font-size: 0.9rem;
+    padding: 8px 14px;
+    font-size: 0.8rem;
   }
 
   .form {
