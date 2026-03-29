@@ -1,1 +1,60 @@
-/* ...existing code from css/home.css... */
+.slider {
+	display: grid;
+	gap: 16px;
+	margin-top: 16px;
+	margin-bottom: 12px;
+}
+
+.slider--full {
+	margin-top: -1px;
+	margin-bottom: 24px;
+}
+
+.slider__track {
+	position: relative;
+	height: clamp(220px, 38vw, 420px);
+	border-radius: 24px;
+	overflow: hidden;
+	border: 1px solid var(--border);
+	box-shadow: var(--shadow);
+	background: #0b0f14;
+}
+
+.slider--full .slider__track {
+	border-radius: 0;
+	border: none;
+	box-shadow: none;
+}
+
+.slider__slide {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 0;
+	opacity: 0;
+	transition: opacity 0.6s ease;
+}
+
+.transferencia {
+	margin-top: 12px;
+	padding: 16px;
+	background: var(--card);
+	border: 1px solid var(--border);
+	border-radius: 16px;
+	box-shadow: var(--shadow);
+}
+.transferencia p {
+	margin: 6px 0;
+}
+.transferencia[hidden] {
+	display: none;
+}
+.slider__slide.is-active {
+	opacity: 1;
+}
+
+.slider__overlay {
+	position: absolute;
+	inset: 0;

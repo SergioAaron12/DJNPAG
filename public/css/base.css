@@ -1,1 +1,59 @@
-/* ...existing code from css/base.css... */
+:root {
+	color-scheme: dark;
+	--bg: #0b0f14;
+	--text: #edf2f7;
+	--muted: #9aa6b2;
+	--primary: #22c55e;
+	--primary-dark: #16a34a;
+	--card: #121821;
+	--border: #1f2937;
+	--shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-family: "Inter", sans-serif;
+}
+
+body {
+	background: var(--bg);
+	color: var(--text);
+	line-height: 1.6;
+	background-image: url("../assets/body.djn.png");
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+
+img {
+	max-width: 100%;
+	display: block;
+	border-radius: 18px;
+}
+
+.container {
+	width: min(1120px, 92%);
+	margin: 0 auto;
+}
+
+.hero {
+	padding: 0 0 80px;
+	background: radial-gradient(circle at top, #1a1f29 0%, #0b0d10 55%);
+}
+
+.hero__content {
+	max-width: 520px;
+}
+
+.hero .container {
+	display: grid;
+	gap: 36px;
+}
+
+.topbar {
+	background: #000000;
+	color: #ffffff;
+}
