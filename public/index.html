@@ -1,89 +1,145 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="es">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
-
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/12.11.0/firebase-app-compat.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/12.11.0/firebase-auth-compat.js"></script>
-    <script defer src="/__/firebase/12.11.0/firebase-database-compat.js"></script>
-    <script defer src="/__/firebase/12.11.0/firebase-firestore-compat.js"></script>
-    <script defer src="/__/firebase/12.11.0/firebase-functions-compat.js"></script>
-    <script defer src="/__/firebase/12.11.0/firebase-messaging-compat.js"></script>
-    <script defer src="/__/firebase/12.11.0/firebase-storage-compat.js"></script>
-    <script defer src="/__/firebase/12.11.0/firebase-analytics-compat.js"></script>
-    <script defer src="/__/firebase/12.11.0/firebase-remote-config-compat.js"></script>
-    <script defer src="/__/firebase/12.11.0/firebase-performance-compat.js"></script>
-    <!-- 
-      initialize the SDK after all desired features are loaded, set useEmulator to false
-      to avoid connecting the SDK to running emulators.
-    -->
-    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
-
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
-      }
-    </style>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+    />
+    <title>Administrador - DJN</title>
+    <link rel="stylesheet" href="css/base.css" />
+      <link rel="icon" href="assets/favicon.png" type="image/png" />
+    <link rel="stylesheet" href="css/admin.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
-  <body>
-    <div id="message">
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
-    </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
+  <body class="page-light page-unified">
+    <header class="hero">
+      <div class="topbar">
+        <div class="topbar__inner container">
+          <div class="brand">
+            <a href="/" aria-label="Ir al inicio">
+              <img src="assets/logo.png" alt="Logo DJN" class="brand__logo" />
+            </a>
+          </div>
+          <div class="topbar__contact">
+            <a class="btn btn--contacto" href="/">Volver</a>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="hero__content admin-login">
+          <p class="eyebrow">Panel privado</p>
+          <h1>Administrador</h1>
+          <p>Ingresa tu clave.</p>
+          <form id="formAdmin" class="form">
+            <div class="field">
+              <label for="token">Clave de administrador</label>
+              <input type="password" id="token" name="token" required />
+            </div>
+            <button class="btn btn--primary" type="submit">Ingresar</button>
+            <p class="hint" id="adminEstado"></p>
+          </form>
+        </div>
+      </div>
+    </header>
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const loadEl = document.querySelector('#load');
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.firestore().doc('/foo/bar').get().then(() => { });
-        // firebase.functions().httpsCallable('yourFunction')().then(() => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        // firebase.analytics(); // call to activate
-        // firebase.analytics().logEvent('tutorial_completed');
-        // firebase.performance(); // call to activate
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+    <main class="container">
+      <section class="section" id="adminDatos" hidden>
+        <div class="section__header">
+          <h2>Compras</h2>
+          <button class="btn btn--ghost" id="btnExportarAdmin">
+            Descargar Excel
+          </button>
+        </div>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Fecha</th>
+                <th>Cliente</th>
+                <th>Correo</th>
+                <th>Teléfono</th>
+                <th>Dirección</th>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Precio unitario</th>
+                <th>Total</th>
+                <th>Pago</th>
+              </tr>
+            </thead>
+            <tbody id="adminTabla"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
 
-        try {
-          let app = firebase.app();
-          let features = [
-            'auth', 
-            'database', 
-            'firestore',
-            'functions',
-            'messaging', 
-            'storage', 
-            'analytics', 
-            'remoteConfig',
-            'performance',
-          ].filter(feature => typeof app[feature] === 'function');
-          loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
-        }
-      });
-    </script>
+    <footer class="footer footer--pro">
+      <div class="container footer__grid">
+        <div class="footer__brand">
+          <p class="footer__title">
+            <img src="assets/logo.png" alt="Logo DJN" class="footer__logo" />
+            DJN
+          </p>
+          <p class="footer__desc">
+            Venta de jaulas para gallinas ponedoras con asesoría y soporte
+            técnico.
+          </p>
+        </div>
+        <div class="footer__col">
+          <h4>Contacto</h4>
+          <p>grupo.movirec2023@gmail.com</p>
+          <p>9 4273 0329</p>
+          <a class="footer__social" href="https://wa.me/56942730329/" target="_blank" rel="noreferrer">
+            <span class="footer__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  fill="currentColor"
+                  d="M12.04 2.02c-5.52 0-10 4.48-10 10 0 1.77.47 3.5 1.36 5.03L2 22l5.13-1.34A9.95 9.95 0 0012.04 22c5.52 0 10-4.48 10-10s-4.48-9.98-10-9.98zm0 18.2c-1.57 0-3.1-.41-4.45-1.19l-.32-.19-3.04.8.81-2.95-.21-.3a8.17 8.17 0 01-1.27-4.37c0-4.53 3.69-8.22 8.48-8.22 4.53 0 8.22 3.69 8.22 8.22s-3.69 8.2-8.22 8.2zm4.61-6.17c-.25-.13-1.47-.72-1.7-.8-.23-.08-.4-.13-.57.13-.17.25-.65.8-.8.96-.15.17-.3.19-.55.06-.25-.13-1.06-.39-2.02-1.24-.75-.67-1.26-1.5-1.41-1.75-.15-.25-.02-.39.11-.52.11-.11.25-.3.38-.45.13-.15.17-.25.25-.42.08-.17.04-.32-.02-.45-.06-.13-.57-1.37-.78-1.88-.2-.48-.41-.42-.57-.42h-.49c-.17 0-.45.06-.68.32-.23.25-.89.87-.89 2.12 0 1.24.91 2.44 1.04 2.61.13.17 1.79 2.74 4.33 3.84.61.26 1.08.41 1.44.52.61.2 1.17.17 1.61.1.49-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.23-.17-.48-.3z"
+                />
+              </svg>
+            </span>
+            WhatsApp
+          </a>
+        </div>
+        <div class="footer__col">
+          <h4>Dirección</h4>
+          <p>RM Metropolitana, Santiago, Chile</p>
+        </div>
+        <div class="footer__col">
+          <h4>Acceso</h4>
+          <a href="/">Inicio</a>
+          <a href="/contacto">Contacto</a>
+          <a href="/admin">Admin</a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <div class="container">
+          <p>© 2026 DJN. Todos los derechos reservados.</p>
+        </div>
+      </div>
+    </footer>
+
+    <a
+      class="whatsapp-float"
+      href="https://wa.me/56942730329/"
+      target="_blank"
+      rel="noreferrer"
+      aria-label="Abrir WhatsApp"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path
+          fill="currentColor"
+          d="M12.04 2.02c-5.52 0-10 4.48-10 10 0 1.77.47 3.5 1.36 5.03L2 22l5.13-1.34A9.95 9.95 0 0012.04 22c5.52 0 10-4.48 10-10s-4.48-9.98-10-9.98zm0 18.2c-1.57 0-3.1-.41-4.45-1.19l-.32-.19-3.04.8.81-2.95-.21-.3a8.17 8.17 0 01-1.27-4.37c0-4.53 3.69-8.22 8.48-8.22 4.53 0 8.22 3.69 8.22 8.22s-3.69 8.2-8.22 8.2zm4.61-6.17c-.25-.13-1.47-.72-1.7-.8-.23-.08-.4-.13-.57.13-.17.25-.65.8-.8.96-.15.17-.3.19-.55.06-.25-.13-1.06-.39-2.02-1.24-.75-.67-1.26-1.5-1.41-1.75-.15-.25-.02-.39.11-.52.11-.11.25-.3.38-.45.13-.15.17-.25.25-.42.08-.17.04-.32-.02-.45-.06-.13-.57-1.37-.78-1.88-.2-.48-.41-.42-.57-.42h-.49c-.17 0-.45.06-.68.32-.23.25-.89.87-.89 2.12 0 1.24.91 2.44 1.04 2.61.13.17 1.79 2.74 4.33 3.84.61.26 1.08.41 1.44.52.61.2 1.17.17 1.61.1.49-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.23-.17-.48-.3z"
+        />
+      </svg>
+    </a>
+
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.19.3/dist/xlsx.full.min.js"></script>
+    <script src="admin.js"></script>
   </body>
 </html>
