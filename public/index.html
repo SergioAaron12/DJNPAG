@@ -251,21 +251,13 @@
           </div>
           <div class="field">
             <label for="metodo">Método de pago</label>
-            <select id="metodo" name="metodo" required>
-              <option value="" selected>Selecciona un metodo</option>
-              <option value="Transferencia">Transferencia</option>
+            <select id="metodo" name="metodo" required disabled>
+              <option value="Transferencia" selected>Transferencia</option>
             </select>
+            <input type="hidden" name="metodo" value="Transferencia" />
           </div>
           <div class="field">
-            <button
-              class="btn btn--dark"
-              type="button"
-              id="btnTransferencia"
-              hidden
-            >
-              Mostrar datos de transferencia
-            </button>
-            <div class="transferencia" id="transferenciaData" hidden>
+            <div class="transferencia" id="transferenciaData">
               <h3>Datos de Transferencia</h3>
               <p><strong>Nombre:</strong> TRANSPORTES DANIJEAN HECTOR ANTICONA E.I.R.L</p>
               <p><strong>RUT:</strong> 76 523 204 - K</p>

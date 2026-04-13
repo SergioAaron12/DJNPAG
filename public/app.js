@@ -1,16 +1,13 @@
-const galleryModalClose = document.getElementById("galleryModalClose");
-if (galleryModalClose) {
-  galleryModalClose.addEventListener("click", closeGallery);
-}
 const PRECIO_UNITARIO = 380000;
 const PRODUCTO_NOMBRE = "Sistema Avicola Integral DJN - Modelo Pro A 120";
 const formCompra = document.getElementById("formCompra");
 const mensaje = document.getElementById("mensaje");
 const btnComprar = document.getElementById("btnComprar");
 const btnPagarWebpay = document.getElementById("btnPagarWebpay");
-const metodoPago = document.getElementById("metodo");
-const btnTransferencia = document.getElementById("btnTransferencia");
-const transferenciaData = document.getElementById("transferenciaData");
+
+
+// Asegurar que todo se ejecute cuando el DOM esté listo
+
 
 
 const prepararCompra = (data) => {
@@ -105,75 +102,71 @@ const obtenerCantidadPago = () => {
 };
 
 const iniciarPagoWebpay = async () => {
-  try {
-    const cantidad = obtenerCantidadPago();
-      headers: {
-}
-    // ...existing code...
+  const cantidad = obtenerCantidadPago();
+  return cantidad;
+};
+
+
+function setupModal(triggerId, modalId) {
+  const trigger = document.getElementById(triggerId);
+  const modal = document.getElementById(modalId);
+  if (!trigger || !modal) {
+    console.warn('No se encontró trigger o modal:', triggerId, modalId);
+    return { modal, close: () => {} };
+  }
+
+  // Función para mostrar el modal
+  function openModal() {
+    console.log('Abriendo modal:', modalId, 'trigger:', triggerId);
+    modal.removeAttribute('hidden');
+    document.body.style.overflow = 'hidden'; // Evita scroll de fondo
+  }
+  // Función para ocultar el modal
+  function closeModal() {
+    console.log('Cerrando modal:', modalId);
+    modal.setAttribute('hidden', '');
+    document.body.style.overflow = '';
+  }
+
+  trigger.addEventListener('click', openModal);
+  // Cerrar al hacer click en el fondo oscuro
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+  // Cerrar al hacer click en el botón de cerrar
+  const closeBtn = modal.querySelector('.modal__close');
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+
+  // Log para depuración
+  console.log('Modal inicializado:', triggerId, modalId);
+  return { modal, close: closeModal };
 }
 
-if (galleryModalImage) {
-  galleryModalImage.addEventListener("click", closeGallery);
-}
 
-const galleryImages = document.querySelectorAll(".vision-gallery__item img");
-// Lógica de galería ya implementada arriba con showGalleryImage
-
-const modals = [
-  setupModal("bebederoTrigger", "bebederoModal"),
-  setupModal("comederoTrigger", "comederoModal"),
-  setupModal("jaulasTrigger", "jaulasModal"),
-  setupModal("atrilesTrigger", "atrilesModal"),
-  setupModal("estanqueTrigger", "estanqueModal"),
-  setupModal("productoTrigger", "productoModal"),
-  { modal: galleryModal, close: closeGallery },
-];
+let modals = [];
 
 
 // Asegurar que la galería se inicialice después de cargar el DOM
 window.addEventListener("DOMContentLoaded", () => {
-      // Soporte para swipe en móvil
-      let touchStartX = 0;
-      let touchEndX = 0;
-      if (galleryModalImage) {
-        galleryModalImage.addEventListener("touchstart", (e) => {
-          touchStartX = e.touches[0].clientX;
-        });
-        galleryModalImage.addEventListener("touchmove", (e) => {
-          touchEndX = e.touches[0].clientX;
-        });
-        galleryModalImage.addEventListener("touchend", () => {
-          if (touchEndX === 0) return;
-          const diff = touchEndX - touchStartX;
-          if (Math.abs(diff) > 50) {
-            if (diff < 0) {
-              showGalleryImage(galleryCurrentIndex + 1); // Swipe izquierda
-            } else {
-              showGalleryImage(galleryCurrentIndex - 1); // Swipe derecha
-            }
-          }
-          touchStartX = 0;
-          touchEndX = 0;
-        });
-      }
-    if (galleryModal) {
-      galleryModal.addEventListener("click", (event) => {
-        // Solo cerrar si se hace clic directamente en el overlay
-        if (event.target === galleryModal) {
-          closeGallery();
-        }
-      });
-    }
-  galleryImagesArr.forEach((img, idx) => {
-    img.addEventListener("click", (e) => {
-      e.preventDefault();
-      showGalleryImage(idx);
-    });
+  modals = [
+    setupModal("bebederoTrigger", "bebederoModal"),
+    setupModal("comederoTrigger", "comederoModal"),
+    setupModal("jaulasTrigger", "jaulasModal"),
+    setupModal("atrilesTrigger", "atrilesModal"),
+    setupModal("estanqueTrigger", "estanqueModal"),
+    setupModal("productoTrigger", "productoModal"),
+  ];
+  [
+    "bebederoTrigger",
+    "comederoTrigger",
+    "jaulasTrigger",
+    "atrilesTrigger",
+    "estanqueTrigger",
+    "productoTrigger"
+  ].forEach(id => {
+    const btn = document.getElementById(id);
+    if (btn) btn.style.display = "inline-block";
   });
-  const galleryModalClose = document.getElementById("galleryModalClose");
-  if (galleryModalClose) {
-    galleryModalClose.addEventListener("click", closeGallery);
-  }
 });
 
 document.addEventListener("keydown", (event) => {
