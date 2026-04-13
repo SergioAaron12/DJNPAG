@@ -510,6 +510,46 @@
   .nav {
     justify-content: flex-start;
   }
+
+  .nav__links {
+    width: 100%;
+    gap: 12px;
+  }
+
+  .nav__links a {
+    padding: 6px 0;
+  }
+
+  .specs {
+    padding: 18px;
+    gap: 18px;
+  }
+
+  .transferencia {
+    padding: 14px;
+  }
+
+  .modal-overlay {
+    padding: 14px;
+  }
+
+  .modal {
+    width: min(100%, 100vw - 28px);
+    max-height: min(86vh, 760px);
+    padding: 16px 14px;
+    border-radius: 18px;
+  }
+
+  .modal__gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .modal__img--equal,
+  .modal__img--compact,
+  .modal__img--small {
+    max-width: 100%;
+    height: auto;
+  }
 }
 
 @media (max-width: 900px) {
@@ -528,11 +568,74 @@
     grid-template-columns: 1fr;
   }
 
+  .slider__track {
+    height: clamp(200px, 78vw, 320px);
+  }
+
+  .slider__overlay {
+    align-items: flex-end;
+    padding: 18px 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.58) 100%);
+  }
+
+  .slider__overlay .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .slider__cta-inner {
+    gap: 8px;
+    max-width: 100%;
+  }
+
+  .slider__title {
+    font-size: clamp(1.25rem, 6vw, 1.8rem);
+  }
+
+  .slider__subtitle {
+    font-size: 0.95rem;
+  }
+
   .hero__card {
     padding: 18px;
   }
 
   .hero__features {
     font-size: 0.95rem;
+  }
+
+  .vision-gallery__grid {
+    gap: 12px;
+  }
+
+  .section {
+    margin: 52px 0;
+  }
+
+  .section h2 {
+    font-size: 1.55rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .price {
+    font-size: 1.7rem;
+  }
+
+  .hero__features,
+  .specs ul,
+  .transferencia p,
+  .modal__section p {
+    font-size: 0.94rem;
+  }
+
+  .modal h3 {
+    font-size: 1.2rem;
+    padding-inline: 20px;
+  }
+
+  .modal__close {
+    top: 8px;
+    right: 8px;
   }
 }
