@@ -6,10 +6,11 @@
     "configurations": [
         
         {
-            "type": "edge",
+            
+            "type": "chrome",
             "request": "launch",
-            "name": "Iniciar Edge para localhost",
-            "url": "http://localhost:8080",
+            "name": "Launch Chrome against localhost",
+            "url": "http://localhost:3000",
             "webRoot": "${workspaceFolder}"
         }
     ]
