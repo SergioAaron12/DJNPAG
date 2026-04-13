@@ -9,6 +9,9 @@ const multer = require("multer");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const publicDir = __dirname;
+const adminPage = path.join(publicDir, "admin", "index.html");
+const contactoPage = path.join(publicDir, "contacto", "index.html");
 
 app.use(express.json({ limit: "200kb" }));
 app.use(express.urlencoded({ extended: true }));
@@ -22,15 +25,15 @@ app.get("/contacto.html", (req, res) => {
   res.redirect(301, "/contacto");
 });
 app.get("/admin", (req, res) => {
-  res.sendFile(path.join(__dirname, "admin.html"));
+  res.sendFile(adminPage);
 });
 app.get("/contacto", (req, res) => {
-  res.sendFile(path.join(__dirname, "contacto.html"));
+  res.sendFile(contactoPage);
 });
 app.get("/contactodjn", (req, res) => {
-  res.sendFile(path.join(__dirname, "contacto.html"));
+  res.redirect(301, "/contacto");
 });
-app.use(express.static(path.join(__dirname)));
+app.use(express.static(publicDir));
 
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,
@@ -213,7 +216,13 @@ app.post("/api/contacto", async (req, res) => {
 
 app.get("/api/admin/compras", async (req, res) => {
   try {
-    if (!adminToken || req.headers["x-admin-token"] !== adminToken) {
+    if (!adminToken) {
+      return res
+        .status(503)
+        .json({ ok: false, message: "ADMIN_TOKEN no configurado" });
+    }
+
+    if (req.headers["x-admin-token"] !== adminToken) {
       return res.status(401).json({ ok: false, message: "No autorizado" });
     }
 

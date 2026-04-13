@@ -2,9 +2,19 @@ const formAdmin = document.getElementById("formAdmin");
 const adminEstado = document.getElementById("adminEstado");
 const adminTabla = document.getElementById("adminTabla");
 const btnExportarAdmin = document.getElementById("btnExportarAdmin");
+const btnCerrarSesion = document.getElementById("btnCerrarSesion");
 const adminDatos = document.getElementById("adminDatos");
 
 let comprasCargadas = [];
+
+const restablecerPanel = () => {
+  comprasCargadas = [];
+  adminTabla.innerHTML = "";
+  formAdmin.reset();
+  adminEstado.textContent = "Sesión cerrada.";
+  if (adminDatos) adminDatos.hidden = true;
+  if (btnCerrarSesion) btnCerrarSesion.hidden = true;
+};
 
 const formatearMoneda = (valor) =>
   new Intl.NumberFormat("es-ES", {
@@ -53,7 +63,16 @@ const cargarCompras = async (token) => {
   });
 
   if (!respuesta.ok) {
-    throw new Error("No autorizado");
+    let message = "No autorizado";
+
+    try {
+      const errorData = await respuesta.json();
+      message = errorData.message || message;
+    } catch {
+      // Si la respuesta no es JSON, se mantiene el mensaje genérico.
+    }
+
+    throw new Error(message);
   }
 
   const data = await respuesta.json();
@@ -106,15 +125,24 @@ formAdmin.addEventListener("submit", async (event) => {
     renderTabla(compras);
     adminEstado.textContent = "Compras cargadas.";
     if (adminDatos) adminDatos.hidden = false;
+    if (btnCerrarSesion) btnCerrarSesion.hidden = false;
     if (adminDatos) {
       adminDatos.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   } catch (error) {
-    adminEstado.textContent = "Clave incorrecta.";
+    adminEstado.textContent =
+      error.message === "ADMIN_TOKEN no configurado"
+        ? "El panel admin no está configurado en el servidor. Define ADMIN_TOKEN en .env."
+        : "Clave incorrecta.";
     if (adminDatos) adminDatos.hidden = true;
+    if (btnCerrarSesion) btnCerrarSesion.hidden = true;
   }
 });
 
 if (btnExportarAdmin) {
   btnExportarAdmin.addEventListener("click", exportarExcel);
+}
+
+if (btnCerrarSesion) {
+  btnCerrarSesion.addEventListener("click", restablecerPanel);
 }

@@ -1,15 +1,27 @@
 {
   "hosting": {
     "public": "public",
+    "cleanUrls": true,
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
     ],
-    "rewrites": [
+    "redirects": [
       {
-        "source": "**",
-        "destination": "/index.html"
+        "source": "/index.html",
+        "destination": "/",
+        "type": 301
+      },
+      {
+        "source": "/admin.html",
+        "destination": "/admin",
+        "type": 301
+      },
+      {
+        "source": "/contacto.html",
+        "destination": "/contacto",
+        "type": 301
       }
     ]
   }

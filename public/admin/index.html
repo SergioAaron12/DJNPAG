@@ -7,9 +7,9 @@
       content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
     />
     <title>Administrador - DJN</title>
-    <link rel="stylesheet" href="css/base.css" />
-      <link rel="icon" href="assets/favicon.png" type="image/png" />
-    <link rel="stylesheet" href="css/admin.css" />
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="icon" href="../assets/favicon.png" type="image/png" />
+    <link rel="stylesheet" href="../css/admin.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -22,12 +22,12 @@
       <div class="topbar">
         <div class="topbar__inner container">
           <div class="brand">
-            <a href="/" aria-label="Ir al inicio">
-              <img src="assets/logo.png" alt="Logo DJN" class="brand__logo" />
+            <a href="../" aria-label="Ir al inicio">
+              <img src="../assets/logo.png" alt="Logo DJN" class="brand__logo" />
             </a>
           </div>
           <div class="topbar__contact">
-            <a class="btn btn--contacto" href="/">Volver</a>
+            <a class="btn btn--contacto" href="../">Volver</a>
           </div>
         </div>
       </div>
@@ -52,9 +52,14 @@
       <section class="section" id="adminDatos" hidden>
         <div class="section__header">
           <h2>Compras</h2>
-          <button class="btn btn--ghost" id="btnExportarAdmin">
-            Descargar Excel
-          </button>
+          <div class="hero__actions">
+            <button class="btn btn--ghost" id="btnExportarAdmin">
+              Descargar Excel
+            </button>
+            <button class="btn btn--contacto" id="btnCerrarSesion" type="button" hidden>
+              Cerrar sesión
+            </button>
+          </div>
         </div>
         <div class="table-wrapper">
           <table>
@@ -82,7 +87,7 @@
       <div class="container footer__grid">
         <div class="footer__brand">
           <p class="footer__title">
-            <img src="assets/logo.png" alt="Logo DJN" class="footer__logo" />
+            <img src="../assets/logo.png" alt="Logo DJN" class="footer__logo" />
             DJN
           </p>
           <p class="footer__desc">
@@ -112,9 +117,9 @@
         </div>
         <div class="footer__col">
           <h4>Acceso</h4>
-          <a href="/">Inicio</a>
-          <a href="/contacto">Contacto</a>
-          <a href="/admin">Admin</a>
+          <a href="../">Inicio</a>
+          <a href="../contacto/">Contacto</a>
+          <a href="./">Admin</a>
         </div>
       </div>
       <div class="footer__bottom">
@@ -140,6 +145,6 @@
     </a>
 
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.19.3/dist/xlsx.full.min.js"></script>
-    <script src="admin.js"></script>
+    <script src="../admin.js"></script>
   </body>
 </html>
