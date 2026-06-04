@@ -1,4 +1,18 @@
-# Logs
+node_modules/
+.env
+.venv/
+venv/
+.DS_Store
+npm-debug.log*
+dist/
+build/
+.firebase/
+/.idea/
+/.vscode/
+__pycache__/
+*.pyc
+coverage/
+/.env.local# Logs
 logs
 *.log
 npm-debug.log*
