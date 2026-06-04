@@ -146,8 +146,32 @@ function setupModal(triggerId, modalId) {
 let modals = [];
 
 
+// Función para inicializar el slider
+function initSlider() {
+  const slides = document.querySelectorAll('.slider__slide');
+  if (slides.length === 0) return;
+  
+  let currentSlide = 0;
+  
+  function showSlide(index) {
+    slides.forEach(slide => slide.classList.remove('is-active'));
+    slides[index].classList.add('is-active');
+  }
+  
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+  }
+  
+  // Cambiar de slide cada 4 segundos
+  setInterval(nextSlide, 4000);
+}
+
 // Asegurar que la galería se inicialice después de cargar el DOM
 window.addEventListener("DOMContentLoaded", () => {
+  // Inicializar slider
+  initSlider();
+  
   modals = [
     setupModal("bebederoTrigger", "bebederoModal"),
     setupModal("comederoTrigger", "comederoModal"),
